@@ -4,7 +4,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
+        @user = create :user
         @user.current_cart = @user.carts.create
         @current_cart = @user.current_cart
         @first_item = Item.first
@@ -60,12 +60,12 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
+        @user = create :user
         login_as(@user, scope: :user)
       end
 
       it "Doesn't show Cart link when there is no current cart" do
-        cart = @user.carts.create(status: "submitted")
+        cart = @user.carts.create
         first_item = Item.first
         first_item.line_items.create(quantity: 1, cart: cart)
         @user.current_cart = nil
@@ -74,7 +74,7 @@ describe 'Feature Test: Cart', :type => :feature do
       end
 
       it "Does show Cart link when there is a current cart" do
-        @user.current_cart = @user.carts.create(status: "submitted")
+        @user.current_cart = @user.carts.create
         first_item = Item.first
         first_item.line_items.create(quantity: 1, cart: @user.current_cart)
         @user.save
@@ -152,7 +152,7 @@ describe 'Feature Test: Cart', :type => :feature do
         expect(@user.current_cart.line_items.first.quantity).to eq(2)
         expect(page).to have_content("Quantity: 2")
         total = first_item.price * 2
-        expect(page).to have_content("$#{total.to_f/100}")
+        expect(page).to have_content("#{total.to_f/100}")
       end
 
     end
