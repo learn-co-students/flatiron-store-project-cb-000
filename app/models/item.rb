@@ -3,13 +3,12 @@ class Item < ActiveRecord::Base
 	has_many :line_items
 	
 	
-   def self.available_items
-		self.all.collect do |item|
-			if !item.inventory.zero? && !item.inventory.nil?
+	def self.available_items
+	  self.all.collect do |item|
+		  if !item.inventory.zero? && !item.inventory.nil?
 				item
 			end
 		end.compact 
 	end 
-
 end
 

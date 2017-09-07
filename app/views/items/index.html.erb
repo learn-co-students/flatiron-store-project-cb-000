@@ -1,0 +1,6 @@
+
+<% @items.each do |item| %>
+	 <%= if !item.nil? %>
+	  	<%= item.title %> - $<%= item.price %><br>
+	 <%end%>
+<%end%>
