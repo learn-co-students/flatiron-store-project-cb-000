@@ -9,17 +9,17 @@ end
 
 User.create(
   email: 'lala@example.com',
-  password: 'pass123'
+  password: 'pass1234'
 )
 
 User.create(
   email: 'tinkiewinkie@example.com',
-  password: 'pass123'
+  password: 'pass1234'
 )
 
 User.create(
   email: 'po@example.com',
-  password: 'pass123'
+  password: 'pass1234'
 )
 
 counter = 1

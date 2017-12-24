@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20171223221918) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
+    t.integer  "user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -26,7 +28,6 @@ ActiveRecord::Schema.define(version: 20171223221918) do
     t.string  "title"
     t.integer "inventory"
     t.integer "price"
-    t.integer "cart_id"
     t.integer "category_id"
   end
 
