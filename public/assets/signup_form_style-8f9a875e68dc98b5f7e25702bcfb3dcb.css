@@ -1,0 +1,28 @@
+.wrapper .sign_up_form_box {
+  width: 600px ;
+  margin: 0 auto ;
+  border: 1px solid blue ;
+  border-radius: 5px ;
+  padding: 10px ;
+  text-align:  center;
+}
+
+.wrapper .sign_up_form_box #error_messages {
+  background-color:  #E57C67 ;
+  color: #FFF ;
+  border-radius: 5px ;
+  text-align: left;
+}
+.wrapper .sign_up_form_box form label {
+  display: inline;
+  float:left;
+  width: 150px ;
+  text-align: left ;
+}
+.wrapper .sign_up_form_box form input[type="email"] {
+  width: 300px ;
+}
+
+.wrapper .sign_up_form_box form input[type="password"] {
+  width: 300px ;
+}

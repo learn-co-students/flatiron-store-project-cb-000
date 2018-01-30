@@ -16,9 +16,26 @@ Bundler.require(*Rails.groups)
 module RailsFlatironStore
   class Application < Rails::Application
 
+
+    config.assets.precompile += %w( signup_form_style.css nav_bar_style.css store_home_style.css )
+    config.assets.precompile += %w( signin_form_style.css )
+
     config.generators do |g|
       g.test_framework  nil #to skip test framework
     end
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default_url_options = {:host => "localhost", :port => 3000 }
+
+    config.action_mailer.smtp_settings = {
+      :address => 'smtp.gmail.com',
+      :username => Rails.application.secrets.email_provider_user_name,
+      :password => Rails.application.secrets.email_provider_password,
+      :port => 587,
+      :authentication => 'plain',
+      :enable_starttls_tls => true
+    }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

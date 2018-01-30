@@ -1,0 +1,10 @@
+<tr style = "height: 40px ;">
+  <td><%= link_to line_item.item.title, item_path(line_item.item.id) %></td>
+  <td><%= number_to_currency(line_item.item.price) %></td>
+  <td><%= line_item.quantity %></td>
+  <% if !@order_page %>
+  <td><%= button_to '', line_item_path(:id => line_item.id), :style => "float: right;",
+      :id => 'remove_from_cart_button', :method => :delete,
+      :onclick => "return confirm ('Are you sure you want to remove this item from your cart ?')" %> </td>
+  <% end %>
+</tr>
