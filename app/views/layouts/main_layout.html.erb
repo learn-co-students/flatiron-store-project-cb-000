@@ -1,0 +1,40 @@
+
+<html>
+  <head>
+    <%= stylesheet_link_tag :nav_bar_style %>
+    <%= stylesheet_link_tag :store_home_style %>
+  </head>
+  <body>
+    <div id = "nav_bar">
+      <%= image_tag '/images/store_icon.png' %>
+      <% if current_user %>
+          <li id = "login_list"><%= current_user.email %> | <%= button_to 'Log out', destroy_user_session_path, :method => :delete %> </li>
+          <%= link_to cart_path(current_user.cart) do %>
+            <li id = "cart_list" title = "Show your shopping cart"></li>
+          <% end %>
+      <% else %>
+          <li id = "login_list"><%= link_to 'Log in', new_user_session_path %> | <%= link_to 'Sign up', new_user_registration_path %></li>
+          <li id = "cart_list" title = "Please log in or sign up to show your cart"></li>
+      <% end %>
+
+    </div>
+
+    <div class = "under_nav_bar"></div>
+
+    <div class = "wrapper">
+
+      <div class = "left_div">
+
+          <%= link_to store_path do  %>
+              <li class = "category_item">All categories</li>
+          <% end %>
+
+        <% @categories.each do |category| %>
+          <%= link_to category_path(category)  do %> <li class = "category_item">  <%= category.title  %></li><% end %>
+        <% end %>
+      </div> <!--left_div-->
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

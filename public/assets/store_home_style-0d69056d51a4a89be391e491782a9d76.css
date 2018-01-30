@@ -1,0 +1,51 @@
+.wrapper .left_div {
+  width: 25% ;
+  float: left ;
+  height: 100% ;
+  margin-right: 20px ;
+  padding: 10px ;
+}
+
+.wrapper .right_div {
+  display: inline ;
+  width: 70% ;
+  float: right ;
+  border: 1px solid black ;
+  border-radius: 5px ;
+  padding: 5px ;
+}
+
+.wrapper .right_div table{
+  width: 100% ;
+}
+.wrapper .category_item {
+  list-style-type:  none ;
+  background-color:  #005F61 ;
+  margin-bottom: 5px ;
+  height: 50px ;
+  border-radius: 5px ;
+  padding: 5px ;
+}
+
+.wrapper .category_item:hover {
+  background-color: #00828D ;
+  cursor: pointer ;
+}
+.wrapper .left_div a {
+  text-decoration:  none ;
+  color: #FFF ;
+}
+
+.wrapper .right_div #add_to_cart_form {
+  display: inline-block;;
+}
+
+.wrapper .right_div #add_to_cart_form input[type = "submit"]{
+  background-image: url("/images/add_to_cart_icon.png") ;
+  height: 40px ;
+  width: 170px ;
+  cursor: pointer; 
+}
+.wrapper .right_div p {
+  display: inline-block;;
+}

@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag  "signup_form_style" %>
+
+<div class = 'sign_up_form_box'>
+  <h2>Sign up to Flatiron Store</h2>
+
+  <div id = "error_messages">
+  <% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  </div> <!--end of error_messages-->
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br><br>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off" %><br><br>
+
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %><br><br>
+
+      <%= f.submit "Sign up" %>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+
+</div> <!--end of sign_up_form_box-->

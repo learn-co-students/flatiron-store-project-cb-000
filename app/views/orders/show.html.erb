@@ -1,5 +1,18 @@
 <% if notice %>
-  <p><%= notice %></p> 
+  <p><%= notice %></p>
 <% end %>
 
 Order Status: <%= @order.status %>
+
+<div class = "right_div" %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Quantity</th>
+  </tr>
+    <%= render :partial => "partials/line_item_info", :collection => @order.line_items, :as => :line_item %>
+    <td><strong>Order total:</strong></td>
+    <td><strong>$<%= number_with_delimiter(@order.total, :delimiter => ",", :separator => ".") %></strong></td>
+</table>
+</div>
