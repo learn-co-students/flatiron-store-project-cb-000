@@ -33,3 +33,53 @@ body {
 .theme-showcase > p > .btn {
   margin: 5px 0;
 }
+
+.container .devise {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 80px;
+
+  div.field {
+	margin-bottom: 20px;
+
+	input[type="text"],
+	input[type="email"],
+	input[type="password"]{
+	  width: 100%;
+	}
+
+	input[type="submit"] {
+	  margin-bottom: 20px;
+	}
+  }
+
+  h2,
+  a {
+	text-align: center;
+  }
+
+}
+
+div.category-list {
+  margin-bottom: 20px;
+}
+
+ul.item-list {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+	margin-bottom: 12px;
+  }
+}
+
+form.button_to {
+  float: right;
+}
+
+@media (min-width: 768px) {
+  .navbar-right {
+	float: right;
+	margin: 0;
+  }
+}

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.3.1'
 gem 'rails', '4.2'
 gem 'sass-rails', '4.0.2'
 gem 'uglifier', '>= 1.3.0'
@@ -24,6 +25,7 @@ group :test, :development do
   gem "pry"
   gem "guard-rspec", require: false
   gem "thin"
+	gem 'byebug'
 end
 
 gem "bootstrap-sass", "~> 3.1.1"
