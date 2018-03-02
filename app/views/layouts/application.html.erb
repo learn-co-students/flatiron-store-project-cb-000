@@ -10,6 +10,9 @@
 <body>
 
 <%= render 'layouts/header' %>
+<%= content_tag(:div, flash[:error], :id => 'flash_error') if flash[:error] %>
+<%= content_tag(:div, flash[:alertnotice], :id => 'flash_error') if flash[:alertnotice] %>
+<%= content_tag(:div, flash[:notice], :id => 'flash_error') if flash[:notice] %>
 <%= yield %>
 
 </body>
