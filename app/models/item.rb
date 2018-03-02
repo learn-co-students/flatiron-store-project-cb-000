@@ -12,4 +12,9 @@ class Item < ActiveRecord::Base
     end
     self.where(id: available_items)
   end
+
+  def decrease_inventory(quantity)
+    self.inventory -= quantity
+    self.save
+  end
 end

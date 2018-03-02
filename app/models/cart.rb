@@ -5,8 +5,8 @@ class Cart < ActiveRecord::Base
 
   def total
     total = 0
-    self.items.each do |item|
-      total += item.price
+    self.line_items.each do |line_item|
+      total += (line_item.item.price * line_item.quantity)
     end
     total
   end
@@ -21,19 +21,13 @@ class Cart < ActiveRecord::Base
       self.line_items.new(quantity: 1, item_id: item)
     end
   end
-end
 
-#   describe "#add_item" do
-#     it 'creates a new unsaved line_item for new item' do
-#       second_item = Item.second
-#       second_line_item = @cart.add_item(second_item.id)
-#       expect(second_line_item.new_record?).to be_truthy
-#     end
-#
-#     it 'creates an appropriate line_item' do
-#       second_item = Item.second
-#       second_line_item = @cart.add_item(second_item.id)
-#       expect(second_line_item.quantity).to eq(1)
-#       expect(second_line_item.item_id).to eq(second_item.id)
-#       expect(second_line_item.cart_id).to eq(@cart.id)
-#     end
+  def checkout
+    self.line_items.each do |line_item|
+      line_item.item.decrease_inventory(line_item.quantity)
+    end
+    self.status = "sumbitted"
+    self.save
+    Order.create(cart: self, user: self.user)
+  end
+end

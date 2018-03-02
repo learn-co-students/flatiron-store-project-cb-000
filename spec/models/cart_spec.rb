@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Cart, :type => :model do
-  before(:each) do 
+  before(:each) do
     @item = Item.first
     @cart = Cart.create
     @line_item = @item.line_items.create(quantity: 1, cart: @cart)
   end
 
-  describe 'items' do 
-    it 'has many line_items built through instance method' do 
+  describe 'items' do
+    it 'has many line_items built through instance method' do
       expect(@cart.line_items).to include(@line_item)
     end
 
@@ -17,7 +17,7 @@ RSpec.describe Cart, :type => :model do
     end
   end
 
-  it 'can calculate its total' do 
+  it 'can calculate its total' do
     Item.second.line_items.create(quantity: 1, cart: @cart)
     expect(@cart.total).to eq(@item.price + Item.second.price)
   end
@@ -38,10 +38,30 @@ RSpec.describe Cart, :type => :model do
       expect(second_line_item.cart_id).to eq(@cart.id)
     end
 
-    it 'updates existing line_item instead of making new when adding same item' do 
+    it 'updates existing line_item instead of making new when adding same item' do
       @line_item2 = @cart.add_item(@item.id)
       @line_item2.save
       expect(@line_item.id).to eq(@line_item2.id)
     end
+  end
+
+
+  describe "#checkout" do
+    it 'updates inventory of items in the cart' do
+      second_item = Item.second
+      second_line_item = @cart.add_item(second_item.id)
+      second_line_item.quantity = 3
+      second_line_item.save
+      first_item_inventory_before = @item.inventory
+      second_item_inventory_before = second_item.inventory
+      @cart.checkout
+
+      second_item.reload
+      @item.reload
+      expect(@item.inventory).to eq(first_item_inventory_before-1)
+      expect(second_item.inventory).to eq(second_item_inventory_before-3)
+
+    end
+
   end
 end
