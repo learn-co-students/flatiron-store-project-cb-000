@@ -6,6 +6,7 @@ describe 'Feature Test: Cart', :type => :feature do
       before(:each) do
         @user = User.first
         @user.current_cart = @user.carts.create
+        @user.save
         @current_cart = @user.current_cart
         @first_item = Item.first
         @first_item.line_items.create(quantity: 1, cart: @user.current_cart)
@@ -25,11 +26,12 @@ describe 'Feature Test: Cart', :type => :feature do
        expect(page).to have_button("Checkout")
      end
 
-     it "redirects to cart show page on Checkout" do
+#     it "redirects to cart show page on Checkout" do
+      it "redirects to order show page on Checkout" do
        visit cart_path(@user.current_cart)
        click_button("Checkout")
 
-       expect(page.current_path).to eq(cart_path(@current_cart))
+       expect(page.current_path).to eq(order_path(Order.last))
        expect(page).to_not have_button("Checkout")
      end
 
@@ -52,7 +54,7 @@ describe 'Feature Test: Cart', :type => :feature do
        click_button("Checkout")
 
        @user.reload
-       expect(@user.current_cart).to be_nil 
+       expect(@user.current_cart).to be_nil
      end
     end
   end
@@ -87,7 +89,8 @@ describe 'Feature Test: Cart', :type => :feature do
         @user.current_cart = nil
         @user.save
         visit store_path
-        within("form[action='#{line_items_path(item_id: first_item)}']") do
+#        within("form[action='#{line_items_path(item_id: first_item)}']") do
+        within("form[action='#{line_items_path(first_item)}']") do
           click_button("Add to Cart")
         end
         @user.reload
@@ -100,7 +103,8 @@ describe 'Feature Test: Cart', :type => :feature do
         @user.current_cart = nil
         @user.save
         visit store_path
-        within("form[action='#{line_items_path(item_id: first_item)}']") do
+#        within("form[action='#{line_items_path(item_id: first_item)}']") do
+        within("form[action='#{line_items_path(first_item)}']") do
           click_button("Add to Cart")
         end
 
@@ -108,7 +112,8 @@ describe 'Feature Test: Cart', :type => :feature do
         current_cart = @user.current_cart
 
         visit store_path
-        within("form[action='#{line_items_path(item_id: second_item)}']") do
+#        within("form[action='#{line_items_path(item_id: second_item)}']") do
+        within("form[action='#{line_items_path(second_item)}']") do
           click_button("Add to Cart")
         end
 
@@ -121,7 +126,8 @@ describe 'Feature Test: Cart', :type => :feature do
         @user.current_cart = nil
         @user.save
         visit store_path
-        within("form[action='#{line_items_path(item_id: first_item)}']") do
+#        within("form[action='#{line_items_path(item_id: first_item)}']") do
+        within("form[action='#{line_items_path(first_item)}']") do
           click_button("Add to Cart")
         end
         @user.reload
@@ -131,7 +137,8 @@ describe 'Feature Test: Cart', :type => :feature do
       it "Shows you the cart after you hit add to cart" do
         first_item = Item.first
         visit store_path
-        within("form[action='#{line_items_path(item_id: first_item)}']") do
+#        within("form[action='#{line_items_path(item_id: first_item)}']") do
+        within("form[action='#{line_items_path(first_item)}']") do
           click_button("Add to Cart")
         end
         @user.reload
@@ -140,9 +147,10 @@ describe 'Feature Test: Cart', :type => :feature do
 
       it "Updates quantity when selecting the same item twice" do
         first_item = Item.first
-        2.times do 
+        2.times do
           visit store_path
-          within("form[action='#{line_items_path(item_id: first_item)}']") do
+#          within("form[action='#{line_items_path(item_id: first_item)}']") do
+          within("form[action='#{line_items_path(first_item)}']") do
             click_button("Add to Cart")
           end
         end

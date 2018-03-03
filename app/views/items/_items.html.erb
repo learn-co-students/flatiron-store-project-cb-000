@@ -1,0 +1,6 @@
+<p><%= item.title %> | <%= number_to_currency(item.price.to_f/100) %>
+  <strong>| There are only <%= item.inventory %> left in stock.</strong>
+  <% if current_user %>
+    <%= button_to 'Add to Cart', line_items_path(item) %>
+  <% end %>
+  </p>
