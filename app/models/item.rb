@@ -11,5 +11,9 @@ class Item < ActiveRecord::Base
     update(inventory: inventory - amount)
   end
 
+  def number_to_currency
+    "$#{self.price.to_f/100}"
+  end
+
 
 end
