@@ -40,6 +40,7 @@ describe 'Feature Test: Store', :type => :feature do
         end
 
         it 'does display "Add To Cart" button' do
+          binding.pry
           visit store_path
           expect(page).to have_selector("input[type=submit][value='Add to Cart']")
         end

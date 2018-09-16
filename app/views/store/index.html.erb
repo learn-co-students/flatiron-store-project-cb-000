@@ -1,6 +1,7 @@
-<% if notice %>
-  <p><%= notice %></p>
+<% @categories.each do |category| %>
+  <%= link_to category.title, category_path(category) %>
 <% end %>
 
-<%= render partial: 'categories/categories_index', locals: {categories: @categories} %>
-<%= render partial: 'items/index', locals: {items: @items} %>
+<% @items.each do |item| %>
+  <p><%= item.title %> | <%= item.number_to_currency %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) if user_signed_in? %></p>
+<% end %>
