@@ -5,7 +5,7 @@
             <li>Signed in as <%= current_user.email %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
             <% if !!@cart %>
-            <li> <%= link_to "Cart", cart_path(current_cart) %></li>
+            <li> <%= link_to "Cart", cart_path(current_user.current_cart) %></li>
             <% end %>
         <% else %>
             <li><%= link_to "sign in", new_user_session_path %></li>

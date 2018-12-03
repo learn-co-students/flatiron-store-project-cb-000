@@ -8,7 +8,13 @@ class User < ActiveRecord::Base
   has_many :orders
 
   def current_cart
-    Cart.find_by(id: self.current_cart_id)
+    if self.current_cart_id
+      return Cart.find_by(id: self.current_cart_id)
+    else
+      cart = self.carts.create
+      self.current_cart_id = cart.id
+      return cart
+    end
   end
 
   def current_cart=(cart)
