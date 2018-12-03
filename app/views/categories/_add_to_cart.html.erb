@@ -1,0 +1,4 @@
+<%= form_tag cart_path(current_user.current_cart), :method => 'patch' do %>
+  <%= hidden_field_tag 'cart[items][]', item.id, :id => "item_#{item.id}" %>
+  <%= submit_tag "Add to Cart" %>
+<% end %>
