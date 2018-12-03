@@ -1,0 +1,3 @@
+<% @items.each do |item| %>
+  <p><%= link_to item.title, item_path(item) %> | <%= '$%.2f' % (item.price.to_f/100) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item)  if user_signed_in? %></p>
+<% end %>
