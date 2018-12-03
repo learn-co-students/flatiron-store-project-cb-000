@@ -9,15 +9,17 @@ class User < ActiveRecord::Base
 
   def current_cart
     if self.current_cart_id
-      return Cart.find_by(id: self.current_cart_id)
-    else
-      cart = self.carts.create
-      self.current_cart_id = cart.id
-      return cart
+      Cart.find_by(id: self.current_cart_id)
     end
   end
 
   def current_cart=(cart)
-    self.current_cart_id = cart.id
+    self.current_cart_id = !!cart ? cart.id : nil
+    self.save
+  end
+
+  def new_cart
+    cart = self.carts.create
+    self.current_cart = cart
   end
 end

@@ -4,8 +4,8 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
-        @user.current_cart = @user.carts.create
+        @user = FactoryGirl.create(:user)
+        @user.new_cart
         @current_cart = @user.current_cart
         @first_item = Item.first
         @first_item.line_items.create(quantity: 1, cart: @user.current_cart)
@@ -60,12 +60,12 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
+        @user = FactoryGirl.create(:user)
         login_as(@user, scope: :user)
       end
 
       it "Doesn't show Cart link when there is no current cart" do
-        cart = @user.carts.create(status: "submitted")
+        cart = @user.new_cart
         first_item = Item.first
         first_item.line_items.create(quantity: 1, cart: cart)
         @user.current_cart = nil
@@ -74,7 +74,7 @@ describe 'Feature Test: Cart', :type => :feature do
       end
 
       it "Does show Cart link when there is a current cart" do
-        @user.current_cart = @user.carts.create(status: "submitted")
+        @user.current_cart = @user.new_cart
         first_item = Item.first
         first_item.line_items.create(quantity: 1, cart: @user.current_cart)
         @user.save

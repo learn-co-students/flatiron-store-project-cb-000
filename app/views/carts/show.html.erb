@@ -11,4 +11,6 @@
 <% end %>
 <p>Order total: <strong><%= number_to_currency(@cart.total.to_f/100) %></strong> </p>
 
-<%= button_to 'Checkout', checkout_path %>
+<% if current_user.current_cart %>
+  <%= button_to 'Checkout', checkout_path %>
+<% end %>
