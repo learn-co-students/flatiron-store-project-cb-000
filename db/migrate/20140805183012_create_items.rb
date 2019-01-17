@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :title
       t.integer :inventory
       t.float :price
+      t.references :order, foreign_key: true
       t.references :category, foreign_key: true
     end
   end
