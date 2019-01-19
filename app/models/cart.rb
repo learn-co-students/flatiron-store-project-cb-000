@@ -17,9 +17,10 @@ class Cart < ActiveRecord::Base
      l_item = self.line_items.find_by(item_id: item_id)
      if l_item
        l_item.quantity += 1
-       l_item 
+       l_item
      else
       self.line_items.build(item_id: item_id)
      end
    end
+
 end
