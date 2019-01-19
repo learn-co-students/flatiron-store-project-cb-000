@@ -23,4 +23,12 @@ class Cart < ActiveRecord::Base
      end
    end
 
+   def checkout
+    self.status = "submitted"
+    line_items.each {|line_item| line_item.item.remove(line_item.quantity)}
+    user.remove_current_cart
+    save
+
+  end
+
 end

@@ -7,4 +7,8 @@ class Item < ActiveRecord::Base
     self.where('inventory > 0')
   end
 
+  def remove(num)
+    update(inventory: inventory - num)
+  end
+
 end

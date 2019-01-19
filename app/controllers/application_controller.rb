@@ -7,5 +7,5 @@ class ApplicationController < ActionController::Base
     current_user.current_cart
   end
 
-helper_method :current_cart
+  helper_method :current_cart
 end
