@@ -3,5 +3,9 @@
 <% end %>
 
 <% @items.each do |item| %>
-  <p><%= item.title %> | <%= number_to_currency(item.price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+  <p>
+  <% @itemPrice = item.price / 100 %>
+  <%= item.title %> | <%= number_to_currency(@itemPrice) %> |
+  <%= button_to 'Add to Cart', line_items_path(item_id: item) %>
+</p>
 <% end %>
