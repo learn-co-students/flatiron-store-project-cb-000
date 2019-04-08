@@ -12,6 +12,35 @@
 
 ActiveRecord::Schema.define(version: 2019_04_07_224102) do
 
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cart_id"
+    t.integer "order_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "title"
+    t.integer "inventory"
+    t.integer "price"
+    t.integer "category_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "cart_id"
+    t.integer "quantity", default: 1
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "total"
+    t.integer "cart_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
