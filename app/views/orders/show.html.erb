@@ -1,5 +1,6 @@
 <% if notice %>
-  <p><%= notice %></p> 
+  <p><%= notice %></p>
 <% end %>
 
 Order Status: <%= @order.status %>
+<h3>Order total: $<%= (@order.total.to_f/100 ) %></h3>
