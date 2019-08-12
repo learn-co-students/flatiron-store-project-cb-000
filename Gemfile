@@ -1,12 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2'
-gem 'sass-rails', '4.0.2'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'rails'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'devise'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
+gem 'json'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :test, :development do
@@ -17,10 +18,10 @@ group :test, :development do
   gem "selenium-webdriver"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "factory_girl_rails"
+  gem "factory_bot"
   gem "simplecov"
   gem "database_cleaner"
-  gem "sqlite3"
+  gem "sqlite3", '~> 1.3.6'
   gem "pry"
   gem "guard-rspec", require: false
   gem "thin"
