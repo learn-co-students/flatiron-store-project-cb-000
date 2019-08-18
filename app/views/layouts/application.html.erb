@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RailsFlatironStore</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= analytics_init if Rails.env.production? %>
+  <title>Flatiron Store</title>
 </head>
 <body>
-
-<%= render 'layouts/header' %>
+<header>
+  <%= link_to 'Store Home', store_path %>
+  <% if current_user %>
+    <h3>Signed in as <%= current_user.email %></h2>
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to 'sign in', new_user_session_path %>
+    <%= link_to 'Sign up', new_user_registration_path %>
+  <% end %>
+</header>
 <%= yield %>
 
 </body>
