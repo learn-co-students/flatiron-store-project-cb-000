@@ -1,7 +1,18 @@
 <% @categories.each do |category| %>
-  <%= link_to category.title, category_path(category) %>
+  <h2><%= link_to category.title, category %><h2>
+  <% category.items.each do |item| %>
+    <% if item.inventory > 0 %>
+      <p><%= item.title %></p>
+      <p><%= number_to_currency(item.price / 100) %></p>
+      <% if current_user %>
+        <%= button_to 'Add to Cart', {controller: 'line_items', action: 'create',
+        item_id: item.id} %>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
 
-<% @items.each do |item| %>
-  <p><%= item.title %> | <%= number_to_currency(item.price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+<% if current_user && current_user.current_cart %>
+  <%= link_to "Cart", cart_path(current_user.current_cart) %>
 <% end %>
+carts_path
