@@ -19,7 +19,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "simplecov"
   gem "database_cleaner"
-  gem "pry-byebug"
+  gem 'pry'
   gem "rspec-rails"
   gem 'faker'
 end

@@ -16,6 +16,7 @@ RSpec.describe LineItem, :type => :model do
   end
 
   it 'has a quantity, default 1' do 
-    expect(@line_item.quantity).to eq(1)
+    line_item = LineItem.new
+    expect(line_item.quantity).to eq(1)
   end
 end
