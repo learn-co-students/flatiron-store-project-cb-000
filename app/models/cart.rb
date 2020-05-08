@@ -2,7 +2,7 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :line_items
   has_many :items, through: :line_items
-
+  enum status: { submitted: 0, not_submitted: 1}
   def total
     items.sum(:price)
   end
