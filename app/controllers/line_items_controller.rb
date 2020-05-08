@@ -9,13 +9,11 @@ class LineItemsController < ApplicationController
   private
 
   def get_cart
-     unless current_user.current_cart
+    unless current_user.current_cart
       current_user.build_current_cart
       current_user.save
-      current_user.current_cart
-    else
-      current_user.current_cart
     end
+    current_user.current_cart
   end
 end
 
